@@ -4,7 +4,7 @@ import React, { Component } from 'react'
      constructor(){
          super();
          this.state={
-             tasks:[{task:'read', id:1},{task:'write', id:2},{task:'play', id:3}],
+             tasks:[],
              currTask:''
          }
      }
@@ -24,7 +24,7 @@ import React, { Component } from 'react'
 
     handleDelete = (id) => {
         let narr = this.state.tasks.filter((taskObj)=>{
-            return taskObj.id!=id
+            return taskObj.id!==id
         })
         this.setState({
             tasks:[...narr]
@@ -34,15 +34,17 @@ import React, { Component } from 'react'
     render() {
         return (
             <div>
-            <input type="text" value={this.state.currTask} onChange={this.handleChange}/>
-               <button onClick={this.handleSubmit}>Submit</button>
-            
+                <div className="header">
+            <input className="input-box" type="text" value={this.state.currTask} onChange={this.handleChange}/>
+               <button className="sbtn" onClick={this.handleSubmit}>+</button>
+              </div>
                <ul>
                     {
                         this.state.tasks.map((taskobj)=>(
                             <li key={taskobj.id}>
-                                <p>{taskobj.task}</p>
-                               <button onClick={() => this.handleDelete(taskobj.id)}>Delete</button>
+                                <p>{taskobj.task}
+                               <button className="dbtn" onClick={() => this.handleDelete(taskobj.id)}> x </button>
+                               </p>
                             </li>
                         )
                         
